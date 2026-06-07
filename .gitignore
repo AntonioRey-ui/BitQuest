@@ -1,0 +1,8 @@
+# Objetos y binarios
+*.o
+*.obj
+*.exe
+bitquest
+
+# Sistema
+.DS_Store
