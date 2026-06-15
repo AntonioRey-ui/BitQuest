@@ -86,3 +86,19 @@ void render_mensaje_final(const Juego *j)
     printf("  Pasos realizados : %d\n\n", j->pasos);
     fflush(stdout);
 }
+
+void render_resumen_total(int monedas, int monedas_total, int pasos, int niveles)
+{
+    render_limpiar();
+    printf("\n");
+    printf("  ============================================\n");
+    printf("            JUEGO COMPLETADO - BitQuest        \n");
+    printf("  ============================================\n\n");
+    printf("  Niveles superados : %d/%d\n", niveles, MAX_NIVELES);
+    printf("  Monedas totales   : %d/%d\n", monedas, monedas_total);
+    printf("  Pasos totales     : %d\n", pasos);
+    if (monedas_total > 0 && monedas == monedas_total)
+        printf("\n  Perfecto! Recogiste todas las monedas.\n");
+    printf("\n  Gracias por jugar BitQuest!\n\n");
+    fflush(stdout);
+}

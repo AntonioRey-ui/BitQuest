@@ -18,6 +18,10 @@ int main(void)
     Juego juego;
     int nivel = 0;
     int corriendo = 1;
+    int total_monedas = 0;      /* monedas recogidas en todo el juego */
+    int total_posibles = 0;     /* monedas que existian en todos los niveles */
+    int total_pasos = 0;        /* pasos acumulados de todos los niveles */
+    int niveles_completados = 0;
 
     render_init();
     input_init();
@@ -31,11 +35,20 @@ int main(void)
         render_juego(&juego);
 
         if (juego_ganado(&juego)) {
+            /* Acumula los totales del nivel recien terminado */
+            total_monedas  += juego.monedas;
+            total_posibles += juego.monedas_total;
+            total_pasos    += juego.pasos;
+            niveles_completados++;
+
             render_mensaje_final(&juego);
             nivel++;
             if (nivel >= MAX_NIVELES) {
-                printf("  Has completado todos los niveles. Gracias por jugar!\n\n");
-                break;
+                pausa_continuar();
+                render_resumen_total(total_monedas, total_posibles,
+                                     total_pasos, niveles_completados);
+                input_fin();        /* deja el resumen visible en pantalla */
+                return 0;
             }
             pausa_continuar();
             if (!juego_cargar_nivel(&juego, nivel))
