@@ -32,8 +32,6 @@ ProyectoEnsamblador/
 ├── asm/
 │   └── funciones.asm  Funciones obligatorias en NASM (win64 y macho64/elf64)
 ├── maps/           Mapas de los niveles (level1.txt … level3.txt)
-├── tools/
-│   └── gen_maps.py Generador de los mapas 60×60
 ├── build.bat       Compilación en Windows
 ├── Makefile        Compilación en macOS / Linux
 └── README.md
@@ -76,9 +74,3 @@ make clean      # limpia
 
 > En Macs con Apple Silicon el binario se compila para `x86_64` (NASM genera
 > código x86-64) y se ejecuta mediante Rosetta 2.
-
-### Regenerar los mapas (opcional)
-
-```sh
-python3 tools/gen_maps.py
-```
